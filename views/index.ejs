@@ -1,3 +1,25 @@
 <%- include header %>
-这是主页
+<% posts.forEach(function(post,index){ %>
+  <p>
+  <h2>
+    <a href="u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>">
+      <%= post.title %>
+    </a>
+  </h2>
+  <a href="/u/<%= post.name %>/"><img src="<%= post.avatar %>" class="r_avatar"/></a>
+  </p>
+  <p class="info">
+    作者: <a href="u/<%= post.name %>"><%= post.name %></a> |
+    日期: <%= post.time.minute %> |
+    标签: 
+    <% post.tags.forEach(function(tag,index){ %>
+      <% if(tag){ %>
+        <a href="/tags/<%= tag %>" class="tag"><%= tag %></a>  
+      <% } %>  
+    <% }) %>
+  </p>
+  <p><%- post.post %></p>
+  <p class="info">阅读: <%= post.pv %> | 评论: <%= post.comment?post.comment.length:0 %></p>
+<% }) %>
+<%- include pagination %>
 <%- include footer %>

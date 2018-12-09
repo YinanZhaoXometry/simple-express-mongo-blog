@@ -3,8 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-// var session=require('express-session')
-// var MongoStore=require('connect-mongo')(session)
+
+const mongoose=require('mongoose')
+var session=require('express-session')
+var MongoStore=require('connect-mongo')(session)
+const flash=require('connect-flash')
 
 var settings=require('./settings')
 
@@ -24,16 +27,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(session({
-//   secret:settings.cookieSecret,
-//   key:settings.db, //cookie name
-//   cookie:{maxAge:1000*60*60*24*30}, //30 days
-//   store:new MongoStore({
-//     db:settings.db,
-//     host:settings.host,
-//     port:settings.port
-//   })
-// }))
+
+
+//连接数据库
+mongoose.connect(settings.dbUri,{useNewUrlParser:true})
+
+//加载session中间件，并进行相关设置
+app.use(session({
+  secret:settings.cookieSecret, //secret to sign cookie
+  name:settings.db, //cookie name
+  cookie:{maxAge:1000*60*60*24*30}, //30 days
+  store:new MongoStore({
+    mongooseConnection:mongoose.connection
+  }),
+  resave:true,
+  saveUninitialized:false
+}))
+
+//加载flash中间件
+app.use(flash())
 
 routes(app);
 app.listen(app.get('port'),function(){

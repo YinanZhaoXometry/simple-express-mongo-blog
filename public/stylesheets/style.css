@@ -41,7 +41,7 @@ nav a{
 nav a:hover{
   background-color:#000000;
   color:#f9f9f9;
-  -webkit-transition:color .2s linear;
+  transition:color .2s linear;
 }
 
 article{
@@ -62,3 +62,80 @@ article a:hover{
 .info{
   font-size:14px
 }
+
+.edit{
+  margin:3px;
+  padding:2px 5px;
+  border-radius:3px;
+  background-color:#f3f3f3;
+  color:#333;
+  font-size:13px;
+}
+
+.edit:hover{
+  text-decoration:none;
+  background-color:#f00;
+  color:#fff;
+  transition:color .2s linear;
+}
+
+.lastpage a{
+  float:left;
+  text-deocration:none;
+  padding:.5em 1em;
+  color:#ff0000;
+  font-weight:bold;
+}
+
+.nextpage a{
+  float:right;
+  text-decoration:none;
+  padding:.5em;
+  color:#ff0000;
+  font-weight:bold;
+}
+
+.lastpage a:hover,.nextpage a:hover{
+  text-decoration:none;
+  background-color:#ff0000;
+  color:#f9f9f9;
+  transition:color .2s linear;
+}
+
+.tag{
+  background-color:#a51b1b;
+  border-radius:3px;
+  font-size:14px;
+  color:#ffffff;
+  display:inline-block;
+  padding:0 5px;
+  margin-bottom:8px;
+}
+
+.tag:hover{
+  text-decoration:none;
+  background-color:#ffffff;
+  color:#000000;
+  transition:.2s linear;
+}
+
+.search{
+  border:0;
+  width:8em;
+  text-align:right;
+  font-size:1em;
+  margin:.5em 0;
+}
+
+.l_avatar{
+  float:left;
+  margin-left:-4em;
+  box-shadow:0px 1px 4px #888;
+}
+
+.r_avatar{
+  float:right;
+  margin-top:-2.5em;
+  box-shadow:0px 1px 4px #888;
+}
+
