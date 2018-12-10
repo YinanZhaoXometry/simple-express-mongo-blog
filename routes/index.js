@@ -352,7 +352,7 @@ module.exports = function(app){
   })
 
   //留言响应，用户点击发表留言时相关逻辑
-  app.post('/u/:name/:day/:title',function(req,res){
+  app.post('/p/:_id',function(req,res){
     var date=new Date()
     var time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+
     (date.getDate()<10?('0'+date.getDate()):date.getDate())+' '+
@@ -371,9 +371,7 @@ module.exports = function(app){
       avatar:avatar
     }
     postModel.saveComment(
-        req.params.name,
-        req.params.day,
-        req.params.title,
+        req.params._id,
         comment,
         function(err){
           if(err){

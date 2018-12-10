@@ -129,12 +129,10 @@ postSchema.statics.deletePost=function(name,day,title,callback){
 }
 
 //增加保存评论功能
-postSchema.statics.saveComment=function(name,day,title,comment,callback){
+postSchema.statics.saveComment=function(_id,comment,callback){
   // console.log(name,day,title,comment)
   this.findOne({
-    name:name,
-    "time.day":day,
-    title:title
+    _id: mongoose.Types.ObjectId(_id)
   },function(err,doc){
     console.log(comment.time)
     if(err) return callback(err)
