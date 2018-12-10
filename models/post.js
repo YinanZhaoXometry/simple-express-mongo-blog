@@ -65,11 +65,9 @@ postSchema.statics.getTenPost=function(name,page,callback){
 }
 
 //添加单文章获取方法，用于显示单文章页面（静态方法）
-postSchema.statics.getOnePost=function(name,day,title,callback){
+postSchema.statics.getOnePost=function(_id,callback){
   var condition={
-    name:name,
-    "time.day":day,
-    title:title,
+    _id:mongoose.Types.ObjectId(_id),
   }
   var tempModel=this;
   tempModel.findOne(condition,function(err,doc){

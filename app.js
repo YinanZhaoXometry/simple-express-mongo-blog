@@ -3,15 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 const mongoose=require('mongoose')
 var session=require('express-session')
 var MongoStore=require('connect-mongo')(session)
 const flash=require('connect-flash')
+var fs=require('fs')
 
 var settings=require('./settings')
-
 var routes = require('./routes/index');
+
+var accessLog=fs.createWriteStream('access.log',{flags:'a'})
+var errorLog=fs.createWriteStream('error.log',{flags:'a'})
 
 var app = express();
 
@@ -21,12 +23,17 @@ app.set('port',process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+app.use(logger('dev',{stream:accessLog}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(function(err,req,res,next){
+//   var meta = '['+new Date() + ']' + req.url + '\n'
+//   errorLog.write(meta+err.stack+'\n')
+//   next()
+// })
 
 
 //连接数据库

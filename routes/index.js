@@ -331,11 +331,9 @@ module.exports = function(app){
   })
 
   //用户点击文章标题链接时，显示article页面
-  app.get('/u/:name/:day/:title',function(req,res){
+  app.get('/p/:_id',function(req,res){
     postModel.getOnePost(
-      req.params.name,
-      req.params.day,
-      req.params.title,
+      req.params._id,
       function(err,post){
         if(err){
           req.flash('error',err)
@@ -343,7 +341,7 @@ module.exports = function(app){
         }
         req.flash('success','获取文章成功！')
         res.render('article',{
-          title:req.params.title,
+          title:post.title,
           post:post,
           user:req.session.user,
           success:req.flash('success').toString(),
