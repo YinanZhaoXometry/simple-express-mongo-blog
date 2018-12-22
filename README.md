@@ -1,10 +1,22 @@
 # 简单版多人博客系统MongoDB+express
 
-自学了几个月编程，想做一个自己的博客项目，作为找工作的项目经验用，但是苦苦不知道如何入手，就找来这个项目先练练手，学习学习项目逻辑。该项目是根据nswbmw的教程《一起学node》学做了一个多人博客系统（评论统计出了点问题，找时间改改），欢迎来踩😃:
-
-仓库地址🏠：https://github.com/zhaoyn7/practice-express-mongo-blog
+想做一个自己的博客项目，这个项目作为练手，学习学习项目逻辑。该项目是多人博客系统（评论统计出了点问题，找时间改改），欢迎来踩😃:
 
 项目部署地址🚀：http://blog-practice.herokuapp.com/
+
+### 安装
+1. 安装依赖:
+```
+cd <project-name>
+  
+npm install
+```
+2. 启动:
+```
+npm start
+```
+
+> 如启动遇到问题可尝试删除 node_modules 文件夹和 package-lock.json 后重复上述步骤。
 
 ### 技术栈：
 - 服务器、路由：express
